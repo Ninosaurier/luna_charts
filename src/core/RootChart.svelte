@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Header from "./../components/Header.svelte";
 	let {
 		heightViewbox = 150,
 		widthViewBox = 300,
@@ -8,7 +9,9 @@
 </script>
 
 <svg viewBox="0 0 {widthViewBox} {heightViewbox}"  class="svg">
-	<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle"> Hello World </text>
+	<g>
+
+	</g>
 </svg>
 
 <style>
