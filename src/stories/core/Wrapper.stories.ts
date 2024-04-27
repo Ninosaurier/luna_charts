@@ -1,11 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import RootChart from '../../core/RootChart.svelte';
+import Wrapper from '../../core/Wrapper.svelte';
 // More on how to set up stories at: https://storybook.js.org/docs/writing-stories
 const meta = {
-    title: 'Core/RootChart',
-	component: RootChart,
+    title: 'Core/Wrapper',
+	component: Wrapper,
 	tags: ['autodocs']
-} satisfies Meta<RootChart>;
+} satisfies Meta<Wrapper>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

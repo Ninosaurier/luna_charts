@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import RootChart from './RootChart.svelte';
+import RootChart from './Wrapper.svelte';
 import { mount } from 'svelte';
 
 

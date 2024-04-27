@@ -1,8 +1,8 @@
 <script lang="ts">
-	import RootChart from "./../core/RootChart.svelte";
+	import Wrapper from "./../core/Wrapper.svelte";
 	import Header from "./../components/Header.svelte";
 </script>
 
-<RootChart>
+<Wrapper>
 	<Header />
-</RootChart>
+</Wrapper>
