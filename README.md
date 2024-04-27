@@ -30,5 +30,12 @@ We use Storybook to comment on our library. The command:
 npm run storybook
 ```
 
+## Testing
+For running tests just type: 
+```sh
+npm test
+```
+The message "**src/app.html does not exists**" can be ignored.
+
 ## License
 Our library is licensed under the LGPL 3.0
