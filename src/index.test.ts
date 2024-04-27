@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
-describe('sum test', () => {
-	it('adds 1 + 2 to equal 3', () => {
-		expect(1 + 2).toBe(3);
+describe('Quick math does not work! (EasterEgg)', () => {
+	it('adds 2 + 2 not to equal 3', () => {
+		expect(2 + 2).not.toEqual(3);
 	});
 });
