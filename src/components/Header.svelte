@@ -21,7 +21,7 @@
 		let parent: HTMLElement = startNode.parentElement as HTMLElement;
 		let resultHeader = 0;
 
-		while (parent.tagName !== 'HTML' && resultHeader === 0) {
+		while (parent !== null && parent.tagName !== 'HTML' && resultHeader === 0) {
 			const nodes = Array.from(parent.children);
 
 			for (let index = nodes.length - 1; index >= 0; index -= 1) {
