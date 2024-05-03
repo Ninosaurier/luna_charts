@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Header from "./../components/Header.svelte";
+	import "./luna.scss";
+
 	let {
 		heightViewbox = 150,
 		widthViewBox = 300,
@@ -8,14 +9,12 @@
 	} = $props();
 </script>
 
-<svg viewBox="0 0 {widthViewBox} {heightViewbox}"  class="svg">
-	<g>
-
-	</g>
+<svg 
+	viewBox="0 0 {widthViewBox} {heightViewbox}" 
+	xmlns="http://www.w3.org/2000/svg"  
+	class="flip-verticaly"
+>
+	<slot></slot>
 </svg>
 
-<style>
-	.svg {
-		border: 2px solid black;
-	}
-</style>
+<style></style>

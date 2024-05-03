@@ -6,6 +6,11 @@ const config = {
 	// Consult https://kit.svelte.dev/docs/integrations#preprocessors
 	// for more information about preprocessors
 	preprocess: vitePreprocess(),
+	onwarn: (warning, handler) => {
+		if (warning.code === 'css-unused-selector') {return;}
+		if (warning.code === 'a11y-no-noninteractive-tabindex') return;
+		handler(warning);
+},
 
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.

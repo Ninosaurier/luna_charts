@@ -1,0 +1,9 @@
+.flip-verticaly {
+	transform: scale(1,-1);
+}
+
+.flip-text-verticaly  {
+	transform: rotateX(180deg);
+	transform-box: fill-box;
+	transform-origin: center center;
+}
