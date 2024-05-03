@@ -1,16 +1,18 @@
-import { describe, expect, it } from 'vitest';
-import RootChart from '../../src/core/Wrapper.svelte';
-import { mount } from 'svelte';
-
+import { describe, expect, it} from 'vitest';
+import Wrapper from '../../src/core/Wrapper.svelte';
+import { render } from '@testing-library/svelte';
 
 // Cannot be tested, because Svelte 5 is experimental
-// describe('Create a simple RootChart', () => {
-// 	let instance = null;
-// 	const host = document.createElement('div');
-// 	document.body.append(host);
-// 	instance = mount(RootChart, { target: host });
-
-// 	it('Creates a simple RootChart in the document', () => {
-// 		expect(instance).toBeTruthy();
+// describe('Create a simple Wrapper', () => {
+// 	it('Creates a simple Wrapper in the document', () => {
+// 		const results = render(Wrapper, { props: {} });
 // 	});
 // });
+
+describe('Wrapper component', () => {
+  it('renders the Wrapper with default value', () => {
+    const result = render(Wrapper);
+    
+		expect(result).not.toBe(null)
+  });
+});
