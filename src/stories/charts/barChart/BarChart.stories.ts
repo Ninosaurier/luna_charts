@@ -4,7 +4,7 @@ import BarChart from '../../../charts/BarChart.svelte';
 const meta = {
   title: 'Charts/BarChart',
 	component: BarChart,
-	tags: ['autodocs']
+	tags: ['']
 } satisfies Meta<BarChart>;
 
 export default meta;
