@@ -2,6 +2,7 @@ import { describe, expect, it} from 'vitest';
 import Header from '../../src/components/Header.svelte';
 import { render } from '@testing-library/svelte';
 import { mount } from 'svelte';
+import type { ChartInfo } from '../../src/types/props/ChartInfo.js';
 
 
 describe('Header component', () => {
@@ -18,7 +19,7 @@ describe('Header component', () => {
 		expect(ariaLevel).toBe('1');
   });
 
-	it('renders the Header component with a aria-level 2', () => {
+	it('should have aria-level 2 depending on a superordinate heading', () => {
 		const div: HTMLDivElement = document.createElement("div");
 		const div2: HTMLDivElement = document.createElement("div");
 		const h1: HTMLHeadElement = document.createElement("h1");
@@ -30,5 +31,15 @@ describe('Header component', () => {
 		mount(Header, {target: svg});
     
 		expect(div2.querySelector(".header-title")?.ariaLevel).toBe("2");
+  });
+});
+
+describe('Header should handle title and description', () => {
+  it('should contain title and description', () => {
+		const chartInfo: ChartInfo = { title: "Header", desc: "description"}
+    const result = render(Header, { props: { chartInfo: chartInfo} });
+    
+		expect(result.baseElement.querySelector('.header-title')?.innerHTML).toBe("Header");
+		expect(result.baseElement.querySelector('.header-desc')?.innerHTML).contain("description");
   });
 });

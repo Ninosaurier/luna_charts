@@ -7,7 +7,6 @@
 		chartInfo = {
 			title: 'Example header',
 			desc: 'Example description',
-			source: ''
 		} as ChartInfo,
 	} = $props();
 
