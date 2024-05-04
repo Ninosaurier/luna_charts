@@ -46,6 +46,7 @@
 <g>
 	<title>{chartInfo.title}</title>
 	<desc>{chartInfo.desc}</desc>
+	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<text
 		bind:this={titleTextElement}
 		class="flip-text-verticaly header-title"
@@ -60,6 +61,7 @@
 		{chartInfo.title}
 	</text>
 	<foreignobject class="flip-text-verticaly flip-verticaly" y="70%" width="100%" height="15%">
+		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 		<p class="header-desc" tabindex="0">
 			{@html chartInfo.desc}
 		</p>
