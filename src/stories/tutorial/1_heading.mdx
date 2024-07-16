@@ -1,0 +1,83 @@
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import * as BarChartStory from '../charts/barChart/BarChart.stories';
+import * as HeaderStory from '../components/Header.stories'
+import "./../prism.css"
+
+
+
+<Meta title="Heading" />
+<div className="sb-container">
+	<h1>How to set a title or a description</h1>
+
+	As a beginner in web development, you learn that websites consist of “tags” such as `<body>`, `<h1>` or `<div>`
+	and that there are many of them. Some may seem a little outdated or unnecessary, but they are crucial for accessibility!
+	People with disabilities are dependent on tags such as `<h1>` or `<li>`. Such tags give the website a structure. 
+	People who cannot see, for example, are dependent on such structural things. 
+	Imagine you are reading a book, but all the headings, chapters and sub-chapters are invisible. 
+	You never know when a new chapter starts and only the screen reader can identify them. 
+	Tools such as the screen reader make use of such tags and provide the user with additional information. 
+	There are also attributes that support accessibility. But everything step by step. 
+	In this chapter we will teach you how to define a title and a description. 
+	You will also learn a few more functions that LUNA does for you and that make our diagrams so special!
+	Let's begin with a simple bar chart!
+	
+	<Canvas of={BarChartStory.FullBarChartExample} />
+	Looks great, right? By clicking on “Show Code”, you can view the source code. 
+	You can see that we have a tag called `<BarChart />` and pass it many different values via its attributes.
+	By clicking on “Show Code”, you can view the source code. You can see that we have a tag called `<BarChart />` 
+	and pass it many different values via its attributes. At this point we are interested in the attribute `chartInfo`.
+	`ChartInfo` is a type that we have created and accepts an object and has 
+	members to define a title and a description. The data type is very easy to use. Take a look at the example:
+
+	```ts
+	import type { ChartInfo } from "../types/props/ChartInfo.ts";
+	import {BarChart} from "../components/BarChart.svelte"
+
+	let chartMeta: ChartInfo = { title: "A title", desc: "A simple description"}
+
+	<BarChart chartInfo={chartMeta}>
+	```
+
+At the beginning of the chapter I mentioned that tags like `<h1>` are essential for orientation. Now you're probably 
+asking yourself the question: “How can I give the diagram the right heading?” Not at all! The diagram does it for you. 
+Our diagrams search the HTML document on their own and adapt themselves accordingly. If it finds a superordinate 
+heading `<h2>`, for example, it automatically generates an `<h3>` heading. Well, that's only half the story. 
+In reality, the diagram uses WAI-ARIA attributes such as <b>role=“heading”</b> or <b>aria-level=“3”</b>. 
+The “aria-level” only serves as an example and is generated automatically using a function. 
+<br />
+Now that we understand how the title is created, let's move on to the description. 
+We have come up with something very special here! In our example, you can see that the “desc” 
+attribute accepts an ordinary string. In fact, we are giving you the opportunity to make more out of it here. 
+If you want to mark special places or emphasize certain words, you can embed HTML tags in the string. 
+These will be recognized and correctly interpreted by the diagram. Here is an example:
+
+
+<Canvas of={BarChartStory.BasicBarChartWithEmbeddedHTMLDesc} />
+
+As you can see, part of the description is highlighted in bold. This is because you can use HTML tags in the description. 
+This allows you to highlight and clarify certain parts of the description. Here is the example code for you.
+
+	```ts
+	import type { ChartInfo } from "../types/props/ChartInfo.ts";
+	import {BarChart} from "../components/BarChart.svelte"
+
+	let chartMeta: ChartInfo = { 
+		title: "A title", 
+		desc: "Do you see it? <b>You can use embedded HTML here</b>. Lorem Impsum"
+	}
+
+	<BarChart chartInfo={chartMeta}>
+	```
+
+So, from now on you just have to think about whether the text is not too long or makes enough sense. 
+The diagram takes care of accessibility.
+</div>
+
+<style>
+{`
+span:empty {
+	background-color: red !important;
+	white-space: normal !important;
+}
+`}
+</style>

@@ -1,0 +1,53 @@
+import { Canvas, Meta } from '@storybook/blocks';
+
+import * as WrapperStory from './Wrapper.stories';
+
+<Meta of={WrapperStory} />
+
+# Wrapper
+
+	But don't worry, we'll explain step by step how to get there and take you by the hand.
+	If you like, you can click on "Show more" at the top right and see what the source code looks like.
+	But you can ignore that for now. Creating a chart with LUNA Charts is like playing with Lego.
+	There are a few building blocks that form the heart of a chart. These make it easier for you to insert
+	additional blocks, remove them or create your own. The basic structure ensures that the chart does not collapse.
+
+	I'm sure that when you played Lego and wanted to build a house, you always had a thin board on
+	which you could build a Lego house. The board formed the foundation and you could place your Lego house anywhere
+	in the room with the help of the Lego board. We have something similar. Let me introduce you:
+	The <strong>wrapper component</strong>
+	<Canvas of={WrapperStory.Empty}/>
+
+At first glance, you see nothing. But this is completely normal. 
+Just take a look at the actual source code of the wrapper component below.
+
+```typescript
+<script lang="ts">
+  import type { Dimension } from "../types/props/Dimension.js";
+  import "./luna.scss";
+
+  let {
+    dimension = {
+      viewBox: {
+        minX: 0,
+        minY: 0,
+        width: 300,
+        height: 150
+     } 
+    } as Dimension
+  } = $props();
+</script>
+<svg 
+  viewBox= 
+  {
+    dimension.viewBox.minX + " " +
+    dimension.viewBox.minY + " " +
+    dimension.viewBox.width + " " +
+    dimension.viewBox.height
+  }
+  xmlns="http://www.w3.org/2000/svg"  
+  class="flip-verticaly"
+>
+  <slot></slot>
+</svg>
+```
