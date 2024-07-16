@@ -1,0 +1,157 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as BarChartStory from '../charts/barChart/BarChart.stories';
+import * as HeaderStory from './Header.stories';
+
+<Meta of={HeaderStory} />
+
+# Header Component
+
+The component allows the diagram to define a title and a description.. You can use this component to define the title and description.  
+The component also automatically determines which level the header should have.
+
+## The UI
+
+The header component is part of a large SVG graphic. To be more precise, the header component is placed at 
+the beginning of an SVG diagram and contains the meta information. The information is stored in the "chartInfo" variable. 
+The values are transferred via parameters and are of the ChartInfo type.
+
+```ts
+<g>
+	<title>{chartInfo.title}</title>
+	<desc>{chartInfo.desc}</desc>
+	<text
+		bind:this={titleTextElement}
+		class="flip-text-verticaly header-title"
+		dominant-baseline="middle"
+		text-anchor="middle"
+		x="50%"
+		y="95%"
+		role="heading"
+		tabindex="0"
+		aria-level={headerLevelRole}
+	>
+		{chartInfo.title}
+	</text>
+	<foreignobject 
+		style="overflow: visible;" 
+		class="flip-text-verticaly flip-verticaly" 
+		y="70%" 
+		width="100%" 
+		height="15%"
+	>
+		<p class="header-desc" tabindex="0">
+			{@html chartInfo.desc}
+		</p>
+	</foreignobject>
+</g>
+	```
+
+## Paramters
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+		<th>Description</th>
+  </tr>
+  <tr>
+    <td>chartInfo</td>
+    <td>ChartInfo</td>
+		<td>Includes the member title and desc. The description can be displayed via chartInfo.desc</td>
+  </tr>
+</table> 
+
+## Members
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+		<th>Description</th>
+		<th>Default value</th>
+  </tr>
+  <tr>
+    <td>headerLevelRole</td>
+    <td>Number</td>
+		<td>Contains the level of the heading</td>
+		<td>0</td>
+  </tr>
+  <tr>
+    <td>titleTextElement</td>
+    <td>SVGTextElement</td>
+		<td>Contains the title</td>
+		<td>"", empty string</td>
+  </tr>
+</table> 
+
+## Functions
+
+<table>
+  <tr>
+    <th>Function name</th>
+    <th>Parameters</th>
+		<th>Return value</th>
+		<th>Description</th>
+  </tr>
+  <tr>
+    <td>headerLevelRole</td>
+    <td>Number</td>
+		<td>Contains the level of the heading</td>
+		<td>0</td>
+  </tr>
+  <tr>
+    <td>titleTextElement</td>
+    <td>SVGTextElement</td>
+		<td>Contains the title</td>
+		<td>"", empty string</td>
+  </tr>
+</table> 
+
+## SCSS Styles
+
+### Title
+
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.header-title</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-header-title-fill-color</td>
+    <td>"#000"</td>
+		<td>Font color of the title</td>
+  </tr>
+	<tr>
+    <td>$luna-header-title-font-size</td>
+    <td>unset</td>
+		<td>Font size of the title</td>
+  </tr>
+</table>
+
+### Description
+
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.header-title</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-header-title-fill-color</td>
+    <td>"#000"</td>
+		<td>Font color of the title</td>
+  </tr>
+	<tr>
+    <td>$luna-header-title-font-size</td>
+    <td>unset</td>
+		<td>Font size of the title</td>
+  </tr>
+</table> 

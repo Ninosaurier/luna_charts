@@ -2,7 +2,7 @@
 	import type { Dimension } from "../types/props/Dimension.js";
 	import "./luna.scss";
 
-	let {
+  let {
 		dimension = {
 			viewBox: {
 				minX: 0,

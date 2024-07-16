@@ -11,6 +11,8 @@ type Story = StoryObj<typeof meta>;
 
 //https://storybook.js.org/docs/get-started/whats-a-story
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+
+// Tutorial examples
 export const FullBarChartExample: Story = {
 	args: {
 		chartInfo: {
@@ -23,6 +25,16 @@ export const FullBarChartExample: Story = {
 		}
 	}
 };
+export const BasicBarChartWithEmbeddedHTMLDesc: Story = {
+	args: {
+		chartInfo: {
+			title: "Basic example chart",
+			desc: `Do you see it? <b>You can use embedded HTML here</b>. Lorem Impsum`
+		}
+	}
+};
+
+// Full BarChat Examples
 export const Vanilla: Story = {};
 export const OverwriteStyle: Story = {
 	args:{}

@@ -4,7 +4,6 @@ import Wrapper from '../../core/Wrapper.svelte';
 const meta = {
 	title: 'Core/Wrapper',
 	component: Wrapper,
-	tags: ['autodocs'],
 } satisfies Meta<Wrapper>;
 
 export default meta;

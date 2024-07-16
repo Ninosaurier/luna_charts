@@ -69,19 +69,19 @@
 </g>
 
 <style lang="scss" type="text/scss">
-	$luna-header-fill-color: #000;
-	$luna-header-font-size: unset;
+	$luna-header-title-fill-color: #000;
+	$luna-header-title-font-size: unset;
 
-	$luna-desc-fill-color: #000;
-	$luna-desc-font-size: 0.3em;
+	$luna-header-desc-fill-color: #000;
+	$luna-header-desc-font-size: 0.3em;
 
 	.header-title {
-		fill: $luna-header-fill-color;
-		font-size: $luna-header-font-size;
+		fill: $luna-header-title-fill-color;
+		font-size: $luna-header-title-font-size;
 	}
 
 	.header-desc {
-		fill: $luna-desc-fill-color;
-		font-size: $luna-desc-font-size;
+		fill: $luna-header-desc-fill-color;
+		font-size: $luna-header-desc-font-size;
 	}
 </style>
