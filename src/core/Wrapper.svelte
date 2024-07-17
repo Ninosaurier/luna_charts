@@ -33,7 +33,7 @@
 	class="flip-verticaly"
 >
 	
-  {@render children()}
+	{@render children()}
 </svg>
 
 <style></style>
