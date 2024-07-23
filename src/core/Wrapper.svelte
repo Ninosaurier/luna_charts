@@ -23,6 +23,7 @@
 </script>
 
 <svg 
+	id="barChart"
 	viewBox={
 		dimension.viewBox.minX + ' ' +
 		dimension.viewBox.minY + ' ' +
@@ -36,4 +37,8 @@
 	{@render children()}
 </svg>
 
-<style></style>
+<style>
+	#barChart {
+		background-color: grey;
+	}
+</style>

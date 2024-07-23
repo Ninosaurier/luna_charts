@@ -5,6 +5,7 @@ export { default as BarChart } from './charts/BarChart';
 export { default as Header } from './components/Header';
 
 //* types
-export type { default as ChartInfo } from './types/ChartInfo';
-export type { default as Dimension } from './types/Dimension';
+export type { default as ChartInfo } from './types/props/ChartInfo';
+export type { default as Dimension } from './types/props/Dimension';
+export type {default as Labels } from './types/props/Labels'
 

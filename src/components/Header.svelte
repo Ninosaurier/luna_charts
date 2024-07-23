@@ -4,8 +4,8 @@
 
 	let {
 		chartInfo = {
-			title: '',
-			desc: '',
+			title: 'Test',
+			desc: 'Test'
 		} as ChartInfo
 	} = $props();
 
@@ -53,14 +53,19 @@
 		dominant-baseline="middle"
 		text-anchor="middle"
 		x="50%"
-		y="95%"
+		y="96%"
 		role="heading"
 		tabindex="0"
 		aria-level={headerLevelRole}
 	>
 		{chartInfo.title}
 	</text>
-	<foreignobject style="overflow: visible;" class="flip-text-verticaly flip-verticaly" y="70%" width="100%" height="15%">
+	<foreignobject
+		class="flip-text-verticaly flip-verticaly header-desc-wrapper"
+		y="74%"
+		width="100%"
+		height="15%"
+	>
 		<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 		<p class="header-desc" tabindex="0">
 			{@html chartInfo.desc}
@@ -83,5 +88,12 @@
 	.header-desc {
 		fill: $luna-header-desc-fill-color;
 		font-size: $luna-header-desc-font-size;
+		margin: 0 6px;
+	}
+
+	.header-desc-wrapper {
+		overflow: visible;
+		text-align: justify;
+  	text-justify: inter-word;
 	}
 </style>

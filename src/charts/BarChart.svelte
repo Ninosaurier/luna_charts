@@ -3,8 +3,33 @@
 	import Header from "./../components/Header.svelte";
 	import type { ChartInfo } from "../types/props/ChartInfo.js";
 	import type { Dimension } from "../types/props/Dimension.js";
+	import Axis from "../components/Axis.svelte";
+	import type { Labels } from "../types/props/Labels.js";
+
+	type Props = {
+		labels: Labels;
+		chartInfo: ChartInfo;
+		dimension: Dimension;
+	}
 
 	let { 
+		labels = {
+			xAxis: {
+				name: "X-Axis",
+				minValue: 0,
+				maxValue: 0
+			},
+			leftYAxis: {
+				name: "Left y-Axis",
+				minValue: 0,
+				maxValue: 0
+			},
+			rightYAxis: {
+				name: "Right y-Axis",
+				minValue: 0,
+				maxValue: 0
+			}
+		} as Labels,
 		chartInfo = {
 			title: 'Example header',
 			desc: 'Example description',
@@ -22,4 +47,5 @@
 
 <Wrapper dimension={dimension}>
 	<Header chartInfo={chartInfo}></Header>
+	<Axis labels={labels}></Axis>
 </Wrapper>
