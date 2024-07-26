@@ -25,7 +25,7 @@
 				maxValue: 0
 			},
 			rightYAxis: {
-				name: "Right y-Axis",
+				name: "",
 				minValue: 0,
 				maxValue: 0
 			}

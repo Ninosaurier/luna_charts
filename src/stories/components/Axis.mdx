@@ -1,0 +1,485 @@
+import { Canvas, Meta } from '@storybook/blocks';
+import * as BarChartStory from '../charts/barChart/BarChart.stories';
+import * as AxisStory from './Axis.stories';
+
+<Meta of={AxisStory} />
+
+# Axis Component
+
+The axis component enriches the chart with its mathematical x, y and second y-axis. 
+Users can thus recognize what the data on the x-axis represents and what the data on the two y-axes represents.
+The current status of the component allows the labels to be changed. 
+
+## The UI
+
+```ts
+<g id="labels">
+	<foreignObject
+		id="x-label-wrapper"
+		class="flip-text-verticaly overflow-visible"
+		width={xLabelWrapperWidth}
+		height="1px"
+		x={marginLeftXAxisLabel}
+		y={marginBottomXAxisLabel}
+	>
+		<div id="x-label">
+			{labels.xAxis.name}
+		</div>
+	</foreignObject>
+	<foreignObject
+		id="left-y-label-wrapper"
+		class="flip-text-verticaly overflow-visible"
+		width={yLabelWrapperWidth}
+		height="1px"
+		x={marginLeftYAxisLeftLabel}
+		y={marginTopYAxisLeftLabel}
+	>
+		<div id="left-y-label">
+			{labels.leftYAxis.name}
+		</div>
+	</foreignObject>
+	{#if labels.rightYAxis.name.length !== 0}
+		<foreignObject
+			id="right-y-label-wrapper"
+			class="flip-text-verticaly overflow-visible"
+			width={yLabelWrapperWidth}
+			height="1px"
+			x={marginRightYAxisRightLabel}
+			y={marginTopYAxisRightLabel}
+		>
+			<div id="right-y-label">
+				{labels.rightYAxis.name}
+			</div>
+		</foreignObject>
+	{/if}
+</g>
+<g id="axis">
+	{#if labels.xAxis.name.trim().length !== 0}
+		<line
+			id="x-axis"
+			x1={xAxisStartXPosition}
+			y1={xAxisStartYPosition}
+			x2={xAxisEndXPosition}
+			y2={xAxisEndYPosition}
+		/>
+	{/if}
+	{#if labels.leftYAxis.name.trim().length !== 0}
+		<line
+			id="left-y-axis"
+			x1={leftYAxisStartXPosition}
+			y1={leftYAxisStartYPosition}
+			x2={leftYAxisEndXPosition}
+			y2={leftYAxisEndYPosition}
+		/>
+	{/if}
+	{#if labels.rightYAxis.name.trim().length !== 0}
+		<line
+			id="right-y-axis"
+			x1={rightYAxisStartXPosition}
+			y1={rightYAxisStartYPosition}
+			x2={rightYAxisEndXPosition}
+			y2={rightYAxisEndYPosition}
+		/>
+	{/if}
+</g>
+```
+## Paramters
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+		<th>Description</th>
+  </tr>
+  <tr>
+    <td>labels</td>
+    <td>Labels</td>
+		<td>Includes the members xAxis, leftYAxis & rightYAxis. You can define the title of the labels and theier max and min values</td>
+  </tr>
+	<tr>
+    <td>dimension</td>
+    <td>Dimension</td>
+		<td>
+			Includes the viewBox. Access can be reach by dimension.viewBox. 
+			It is mandatory to pass a value here. Preferably the value from the wrapper itself, 
+			so that the axes and labels are displayed correctly
+		</td>
+  </tr>
+</table> 
+## Members
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Datatype</th>
+		<th>Description</th>
+		<th>Default value</th>
+  </tr>
+  <tr>
+    <td>marginLeft</td>
+    <td>Number</td>
+		<td>The distance from the left and therefore the starting point of the content of the component.</td>
+		<td>
+			dimension.viewBox.width * 0.1
+		</td>
+  </tr>
+  <tr>
+    <td>marginRight</td>
+    <td>Number</td>
+		<td>The distance from the Right and therefore the end point of the content of the component.</td>
+		<td>
+			dimension.viewBox.width * 0.9
+		</td>
+  </tr>
+	<tr>
+    <td>marginTop</td>
+    <td>Number</td>
+		<td>The distance from the Top of the content of the component.</td>
+		<td>
+			dimension.viewBox.height * 0.7
+		</td>
+  </tr>
+	<tr>
+    <td>marginBottom</td>
+    <td>Number</td>
+		<td>The distance from the Bottom of the content of the component.</td>
+		<td>
+			dimension.viewBox.height * 0.15
+		</td>
+  </tr>
+	<tr>
+    <td>xLabelWrapperWidth</td>
+    <td>Number</td>
+		<td>The width of the x-axis label</td>
+		<td>
+			dimension.viewBox.width * 0.09
+		</td>
+  </tr>
+	<tr>
+    <td>yLabelWrapperWidth</td>
+    <td>Number</td>
+		<td>The height of the x-axis label.</td>
+		<td>
+			dimension.viewBox.width * 0.2
+		</td>
+  </tr>
+	<tr>
+    <td>marginLeftXAxisLabel</td>
+    <td>Number</td>
+		<td>The margin left of the x-axis label.</td>
+		<td>
+			marginLeft * 0.05
+		</td>
+  </tr>
+	<tr>
+    <td>marginBottomXAxisLabel</td>
+    <td>Number</td>
+		<td>The margin bottom of the x-axis label.</td>
+		<td>
+			marginBottom * 0.9
+		</td>
+  </tr>
+	<tr>
+    <td>marginLeftYAxisLeftLabel</td>
+    <td>Number</td>
+		<td>The margin left of the y-axis label on the left.</td>
+		<td>
+			marginLeft * 0.05
+		</td>
+  </tr>
+	<tr>
+    <td>marginTopYAxisLeftLabel</td>
+    <td>Number</td>
+		<td>The margin top of the y-axis label on the left.</td>
+		<td>
+			marginTop
+		</td>
+  </tr>
+	<tr>
+    <td>marginRightYAxisRightLabel</td>
+    <td>Number</td>
+		<td>The margin right of the right-y-axis label.</td>
+		<td>
+			marginRight - marginLeft
+		</td>
+  </tr>
+	<tr>
+    <td>marginTopYAxisRightLabel</td>
+    <td>Number</td>
+		<td>The margin top of the right-y-axis label.</td>
+		<td>
+			marginTop
+		</td>
+  </tr>
+	<tr>
+    <td>xAxisStartXPosition</td>
+    <td>Number</td>
+		<td>Start point of the x-axis on x-point.</td>
+		<td>
+			marginLeft
+		</td>
+  </tr>
+	<tr>
+    <td>xAxisStartYPosition</td>
+    <td>Number</td>
+		<td>Start point of the x-axis on the y-point.</td>
+		<td>
+			marginBottom
+		</td>
+  </tr>
+	<tr>
+    <td>xAxisEndXPosition</td>
+    <td>Number</td>
+		<td>End point of the x-axis on the x-point.</td>
+		<td>
+			marginRight
+		</td>
+  </tr>
+	<tr>
+    <td>xAxisEndYPosition</td>
+    <td>Number</td>
+		<td>End point of the x-axis on the y-point.</td>
+		<td>
+			marginBottom
+		</td>
+  </tr>
+	<tr>
+    <td>leftYAxisStartXPosition</td>
+    <td>Number</td>
+		<td>Start point of the y-axis on the x-point.</td>
+		<td>
+			marginLeft + 0.5
+		</td>
+  </tr>
+	<tr>
+    <td>leftYAxisStartYPosition</td>
+    <td>Number</td>
+		<td>Start point of the y-axis on the y-point.</td>
+		<td>
+			marginBottom
+		</td>
+  </tr>
+	<tr>
+    <td>leftYAxisEndXPosition</td>
+    <td>Number</td>
+		<td>End point of the y-axis on the x-point.</td>
+		<td>
+			marginLeft + 0.5
+		</td>
+  </tr>
+	<tr>
+    <td>leftYAxisEndYPosition</td>
+    <td>Number</td>
+		<td>End point of the y-axis on the y-point.</td>
+		<td>
+			marginLeft * 0.95
+		</td>
+  </tr>
+	<tr>
+    <td>rightYAxisStartXPosition</td>
+    <td>Number</td>
+		<td>Start point of the right y-axis on the x-point.</td>
+		<td>
+			marginRight - 0.5
+		</td>
+  </tr>
+	<tr>
+    <td>rightYAxisStartYPosition</td>
+    <td>Number</td>
+		<td>Start point of the right y-axis on the y-point.</td>
+		<td>
+			marginBottom
+		</td>
+  </tr>
+	<tr>
+    <td>rightYAxisEndXPosition</td>
+    <td>Number</td>
+		<td>End point of the right y-axis on the x-point.</td>
+		<td>
+			marginRight - 0.5
+		</td>
+  </tr>
+	<tr>
+    <td>rightYAxisEndYPosition</td>
+    <td>Number</td>
+		<td>End point of the right y-axis on the y-point.</td>
+		<td>
+			marginTop * 0.95
+		</td>
+  </tr>
+</table> 
+## Functions
+No functions available at present
+## SCSS Styles
+
+### X-Label
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.x-label</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+		<td>CSS-Style</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-x-axis-label-font-size</td>
+		<td>Font-size</td>
+    <td>0.2em</td>
+		<td>Font size of the x-label</td>
+  </tr>
+	<tr>
+    <td>$luna-x-axis-label-fill-color</td>
+		<td>fill</td>
+    <td>"#000"</td>
+		<td>Font color of the x-label</td>
+  </tr>
+	<tr>
+    <td>No variable available</td>
+		<td>text-align</td>
+    <td>"center"</td>
+		<td>Position of the text</td>
+  </tr>
+</table>
+
+### Left-Y-Label
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.left-y-label</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+		<td>CSS-Style</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-left-y-axis-label-font-size</td>
+		<td>Font-size</td>
+    <td>0.2em</td>
+		<td>Font size of the left-y-label</td>
+  </tr>
+	<tr>
+    <td>$luna-left-y-axis-label-fill-color</td>
+		<td>fill</td>
+    <td>"#000"</td>
+		<td>Font color of the left-y-label</td>
+  </tr>
+	<tr>
+    <td>No variable available</td>
+		<td>text-align</td>
+    <td>"center"</td>
+		<td>Position of the text</td>
+  </tr>
+</table>
+
+### Right-Y-Label
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.right-y-label</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+		<td>CSS-Style</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-right-y-axis-label-font-size</td>
+		<td>Font-size</td>
+    <td>0.2em</td>
+		<td>Font size of the right-y-label</td>
+  </tr>
+	<tr>
+    <td>$luna-right-y-axis-label-fill-color</td>
+		<td>fill</td>
+    <td>"#000"</td>
+		<td>Font color of the right-y-label</td>
+  </tr>
+	<tr>
+    <td>No variable available</td>
+		<td>text-align</td>
+    <td>"center"</td>
+		<td>Position of the text</td>
+  </tr>
+</table>
+
+### X-Axis
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.x-axis</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+		<td>CSS-Style</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-x-axis-line-stroke-size</td>
+		<td>stroke</td>
+    <td>1px</td>
+		<td>Stroke of the line</td>
+  </tr>
+	<tr>
+    <td>$luna-x-axis-line-stroke-color</td>
+		<td>fill</td>
+    <td>"#000"</td>
+		<td>Color of the x-axis</td>
+  </tr>
+</table>
+
+### Left-Y-Axis
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.left-y-axis</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+		<td>CSS-Style</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-left-y-axis-line-stroke-size</td>
+		<td>stroke</td>
+    <td>1px</td>
+		<td>Stroke of the line</td>
+  </tr>
+	<tr>
+    <td>$luna-left-y-axis-line-stroke-color</td>
+		<td>fill</td>
+    <td>"#000"</td>
+		<td>Color of the left-y-axis</td>
+  </tr>
+</table>
+
+### Right-Y-Axis
+<table>
+	<tr>
+		<th>Class name</th>
+		<th colSpan={2}>.right-y-axis</th>
+	</tr>
+  <tr>
+    <td>Name</td>
+		<td>CSS-Style</td>
+    <td>Default value</td>
+		<td>Description</td>
+  </tr>
+  <tr>
+    <td>$luna-right-y-axis-line-stroke-size</td>
+		<td>stroke</td>
+    <td>1px</td>
+		<td>Stroke of the line</td>
+  </tr>
+	<tr>
+    <td>$luna-right-y-axis-line-stroke-color</td>
+		<td>fill</td>
+    <td>"#000"</td>
+		<td>Color of the right-y-axis</td>
+  </tr>
+</table>

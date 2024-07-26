@@ -26,7 +26,7 @@ export const FullBarChartExample: Story = {
 		labels: {
 			xAxis: { name: "X-Axis", minValue: 0, maxValue: 0},
 			leftYAxis: {name: "Left y-Axis", minValue: 0, maxValue: 0},
-			rightYAxis: {name: "Right x-Axis", minValue: 0, maxValue: 0}
+			rightYAxis: {name: "", minValue: 0, maxValue: 0}
 		}
 	}
 };

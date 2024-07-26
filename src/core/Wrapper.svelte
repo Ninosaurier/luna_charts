@@ -39,6 +39,6 @@
 
 <style>
 	#barChart {
-		background-color: grey;
+		background-color: lightgray;
 	}
 </style>
