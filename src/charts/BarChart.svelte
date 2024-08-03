@@ -1,10 +1,13 @@
 <script lang="ts">
-	import Wrapper from "./../core/Wrapper.svelte";
-	import Header from "./../components/Header.svelte";
 	import type { ChartInfo } from "../types/props/ChartInfo.js";
 	import type { Dimension } from "../types/props/Dimension.js";
 	import Axis from "../components/Axis.svelte";
 	import type { Labels } from "../types/props/Labels.js";
+	import { writable } from "svelte/store";
+	import { setContext } from "svelte";
+	import Bars from "./../components/series/Bars.svelte";
+	import Header from "../components/Header.svelte";
+	import Wrapper from "../components/Wrapper.svelte";
 
 	type Props = {
 		labels: Labels;

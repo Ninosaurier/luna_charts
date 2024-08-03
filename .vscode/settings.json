@@ -3,7 +3,8 @@
 	"editor.tabCompletion": "on",
 	"editor.detectIndentation": false,
 	"svelte.plugin.svelte.compilerWarnings": {
-		"a11y-no-noninteractive-tabindex": "ignore"
+		"a11y-no-noninteractive-tabindex": "ignore",
+		"state_referenced_locally": "ignore"
 	}
 }
 

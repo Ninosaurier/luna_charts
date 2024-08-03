@@ -1,6 +1,8 @@
 <script lang="ts">
+	import { getContext, setContext } from 'svelte';
 	import type { Dimension } from '../types/props/Dimension.js';
 	import type { Labels } from '../types/props/Labels.js';
+	import { GLOBALS } from '../core/env.luna.js';
 
 	let {
 		labels = {
@@ -19,16 +21,10 @@
 				minValue: 0,
 				maxValue: 0
 			}
-		} as Labels,
-		dimension = {
-			viewBox: {
-				minX: 0,
-				minY: 0,
-				width: 300,
-				height: 150
-			}
-		} as Dimension
+		} as Labels
 	} = $props();
+
+	let dimension: Dimension = getContext(GLOBALS.COMPONENTS.CONTEXT.WRAPPER.DIMENSIONS);
 
 	let marginLeft: number = $derived(dimension.viewBox.width * 0.1);
 	let marginRight: number = $derived(dimension.viewBox.width * 0.9);
@@ -61,6 +57,29 @@
 	let rightYAxisStartYPosition: number = $derived(marginBottom);
 	let rightYAxisEndXPosition: number = $derived(marginRight - 0.5);
 	let rightYAxisEndYPosition: number = $derived(marginTop * 0.95);
+
+	/**
+	* As soon as values are assigned to the paddings, the following message appears: "state_referenced_locally". 
+	* But the logic runs correctly. A discussion can be found here: https://github.com/sveltejs/svelte/issues/11883
+	* The warning was disabled in the svelte.config.js
+	*/
+	let paddingLeft: number = $state(marginLeft + 5);
+	let paddingRight: number = $state(marginRight + 5);
+	let paddingTop: number = $state(marginTop + 10 );
+	let paddingBottom: number = $state(marginBottom + 1);
+
+	function updatePaddingsContext(): void {
+		paddingLeft = marginLeft + 5;
+		paddingRight = marginRight + 5;
+		paddingTop = marginTop + 10;
+		paddingBottom = marginBottom + 1;
+		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_LEFT, paddingLeft);
+		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_RIGHT, paddingRight);
+		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_TOP, paddingTop);
+		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_BOTTOM, paddingBottom);
+	}
+
+	$effect(updatePaddingsContext);
 </script>
 
 <g id="labels">

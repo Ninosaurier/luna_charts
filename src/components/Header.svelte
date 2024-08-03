@@ -4,8 +4,8 @@
 
 	let {
 		chartInfo = {
-			title: 'Test',
-			desc: 'Test'
+			title: 'Example title',
+			desc: 'Example description'
 		} as ChartInfo
 	} = $props();
 
@@ -41,11 +41,12 @@
 	function getHeaderRole(): number {
 		return findHigherHeader(titleTextElement);
 	}
+	
 </script>
 
 <g>
-	<title>{chartInfo.title}</title>
-	<desc>{chartInfo.desc}</desc>
+	<title>{ chartInfo.title }</title>
+	<desc>{ chartInfo.desc }</desc>
 	<!-- svelte-ignore a11y_no_noninteractive_tabindex -->
 	<text
 		bind:this={titleTextElement}

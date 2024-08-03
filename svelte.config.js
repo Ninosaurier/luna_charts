@@ -8,7 +8,8 @@ const config = {
 	preprocess: vitePreprocess(),
 	onwarn: (warning, handler) => {
 		if (warning.code === 'css-unused-selector') {return;}
-		if (warning.code === 'a11y-no-noninteractive-tabindex') return;
+		if (warning.code === 'a11y-no-noninteractive-tabindex') {return;}
+		if (warning.code === 'state_referenced_locally') {return;}
 		handler(warning);
 },
 

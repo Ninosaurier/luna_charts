@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import Wrapper from '../../src/core/Wrapper.svelte';
+import Wrapper from '../../src/components/Wrapper.svelte';
 import { render } from '@testing-library/svelte';
 import type { Dimension } from '../../src/types/props/Dimension.js';
 
