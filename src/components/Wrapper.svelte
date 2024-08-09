@@ -25,31 +25,26 @@
 
 	let dimensionStore = writable<Dimension>(dimension);
 
-	dimensionStore.update((d: Dimension) => {
-		dimension.viewBox.height = d.viewBox.height;
-		setContext<Dimension>("test", d);
-		return d;
-	});
-
 	setContext<Writable<Dimension>>(SETTINGS.COMPONENTS.WRAPPER.CONTEXT.DIMENSIONS, dimensionStore);
 </script>
 
 <svg
 	id="barChart"
-	viewBox={dimension.viewBox.minX +
+	viewBox={
+    $dimensionStore.viewBox.minX +
 		' ' +
-		dimension.viewBox.minY +
+		$dimensionStore.viewBox.minY +
 		' ' +
-		dimension.viewBox.width +
+		$dimensionStore.viewBox.width +
 		' ' +
-		dimension.viewBox.height}
+		$dimensionStore.viewBox.height}
 	xmlns="http://www.w3.org/2000/svg"
 	class="flip-verticaly"
 >
 	{@render children()}
 </svg>
-height: <input bind:value={dimension.viewBox.height} />
-width: <input bind:value={dimension.viewBox.width} />
+height: <input bind:value={$dimensionStore.viewBox.height} />
+width: <input bind:value={$dimensionStore.viewBox.width}  />
 
 <style>
 	#barChart {

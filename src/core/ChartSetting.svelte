@@ -17,8 +17,7 @@
 	let localValue: number = $state(0);
 
 	parentValue.subscribe((x) => {
-		leftSpace = x.viewBox.width * 0.1;
-		$inspect('leftspace: ', leftSpace)
+    leftSpace = x.viewBox.width * 0.1;
 	})
 
 	//dimensions.subscribe((value: any) => {$inspect(value)})
