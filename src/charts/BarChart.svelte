@@ -8,6 +8,7 @@
 	import Bars from "./../components/series/Bars.svelte";
 	import Header from "../components/Header.svelte";
 	import Wrapper from "../components/Wrapper.svelte";
+	import ChartSetting from "../core/ChartSetting.svelte";
 
 	type Props = {
 		labels: Labels;
@@ -49,6 +50,8 @@
 </script>
 
 <Wrapper dimension={dimension}>
-	<Header chartInfo={chartInfo}></Header>
-	<Axis labels={labels}></Axis>
+	<ChartSetting>
+		<Header chartInfo={chartInfo}></Header>
+		<Axis labels={labels} ></Axis>
+	</ChartSetting>
 </Wrapper>

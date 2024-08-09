@@ -2,7 +2,8 @@
 	import { getContext, setContext } from 'svelte';
 	import type { Dimension } from '../types/props/Dimension.js';
 	import type { Labels } from '../types/props/Labels.js';
-	import { GLOBALS } from '../core/env.luna.js';
+	import { SETTINGS } from '../core/env.luna.js';
+	import type { Space } from '../types/styles/Space.js';
 
 	let {
 		labels = {
@@ -24,64 +25,58 @@
 		} as Labels
 	} = $props();
 
-	let dimension: Dimension = getContext(GLOBALS.COMPONENTS.CONTEXT.WRAPPER.DIMENSIONS);
+	// let axisPaddingTest: Space = getContext(SETTINGS.COMPONENTS.WRAPPER.CONTEXT.SPACING);
 
-	let marginLeft: number = $derived(dimension.viewBox.width * 0.1);
-	let marginRight: number = $derived(dimension.viewBox.width * 0.9);
-	let marginTop: number = $derived(dimension.viewBox.height * 0.7);
-	let marginBottom: number = $derived(dimension.viewBox.height * 0.15);
+	// let dimension: Dimension = getContext(SETTINGS.COMPONENTS.WRAPPER.CONTEXT.DIMENSIONS);
 
-	let xLabelWrapperWidth: number = $derived(dimension.viewBox.width * 0.09);
-	let yLabelWrapperWidth: number = $derived(dimension.viewBox.width * 0.2);
+	// let marginLeft: number = $derived(dimension.viewBox.width * 0.1);
+	// let marginRight: number = $derived(dimension.viewBox.width * 0.9);
+	// let marginTop: number = $derived(dimension.viewBox.height * 0.7);
+	// let marginBottom: number = $derived(dimension.viewBox.height * 0.15);
 
-	let marginLeftXAxisLabel: number = $derived(marginLeft * 0.05);
-	let marginBottomXAxisLabel: number = $derived(marginBottom * 0.9);
+	// let xLabelWrapperWidth: number = $derived(dimension.viewBox.width * 0.09);
+	// let yLabelWrapperWidth: number = $derived(dimension.viewBox.width * 0.2);
 
-	let marginLeftYAxisLeftLabel: number = $derived(marginLeft * 0.05);
-	let marginTopYAxisLeftLabel: number = $derived(marginTop);
+	// let marginLeftXAxisLabel: number = $derived(marginLeft * 0.05);
+	// let marginBottomXAxisLabel: number = $derived(marginBottom * 0.9);
 
-	let marginRightYAxisRightLabel: number = $derived(marginRight - marginLeft);
-	let marginTopYAxisRightLabel: number = $derived(marginTop);
+	// let marginLeftYAxisLeftLabel: number = $derived(marginLeft * 0.05);
+	// let marginTopYAxisLeftLabel: number = $derived(marginTop);
 
-	let xAxisStartXPosition: number = $derived(marginLeft);
-	let xAxisStartYPosition: number = $derived(marginBottom);
-	let xAxisEndXPosition: number = $derived(marginRight);
-	let xAxisEndYPosition: number = $derived(marginBottom);
+	// let marginRightYAxisRightLabel: number = $derived(marginRight - marginLeft);
+	// let marginTopYAxisRightLabel: number = $derived(marginTop);
 
-	let leftYAxisStartXPosition: number = $derived(marginLeft + 0.5);
-	let leftYAxisStartYPosition: number = $derived(marginBottom);
-	let leftYAxisEndXPosition: number = $derived(marginLeft + 0.5);
-	let leftYAxisEndYPosition: number = $derived(marginTop * 0.95);
+	// let xAxisStartXPosition: number = $derived(marginLeft);
+	// let xAxisStartYPosition: number = $derived(marginBottom);
+	// let xAxisEndXPosition: number = $derived(marginRight);
+	// let xAxisEndYPosition: number = $derived(marginBottom);
 
-	let rightYAxisStartXPosition: number = $derived(marginRight - 0.5);
-	let rightYAxisStartYPosition: number = $derived(marginBottom);
-	let rightYAxisEndXPosition: number = $derived(marginRight - 0.5);
-	let rightYAxisEndYPosition: number = $derived(marginTop * 0.95);
+	// let leftYAxisStartXPosition: number = $derived(marginLeft + 0.5);
+	// let leftYAxisStartYPosition: number = $derived(marginBottom);
+	// let leftYAxisEndXPosition: number = $derived(marginLeft + 0.5);
+	// let leftYAxisEndYPosition: number = $derived(marginTop * 0.95);
 
-	/**
-	* As soon as values are assigned to the paddings, the following message appears: "state_referenced_locally". 
-	* But the logic runs correctly. A discussion can be found here: https://github.com/sveltejs/svelte/issues/11883
-	* The warning was disabled in the svelte.config.js
-	*/
-	let paddingLeft: number = $state(marginLeft + 5);
-	let paddingRight: number = $state(marginRight + 5);
-	let paddingTop: number = $state(marginTop + 10 );
-	let paddingBottom: number = $state(marginBottom + 1);
+	// let rightYAxisStartXPosition: number = $derived(marginRight - 0.5);
+	// let rightYAxisStartYPosition: number = $derived(marginBottom);
+	// let rightYAxisEndXPosition: number = $derived(marginRight - 0.5);
+	// let rightYAxisEndYPosition: number = $derived(marginTop * 0.95);
 
-	function updatePaddingsContext(): void {
-		paddingLeft = marginLeft + 5;
-		paddingRight = marginRight + 5;
-		paddingTop = marginTop + 10;
-		paddingBottom = marginBottom + 1;
-		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_LEFT, paddingLeft);
-		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_RIGHT, paddingRight);
-		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_TOP, paddingTop);
-		setContext(GLOBALS.COMPONENTS.CONTEXT.AXIS.PADDING_BOTTOM, paddingBottom);
-	}
+	// /**
+	// * As soon as values are assigned to the paddings, the following message appears: "state_referenced_locally". 
+	// * But the logic runs correctly. A discussion can be found here: https://github.com/sveltejs/svelte/issues/11883
+	// * The warning was disabled in the svelte.config.js
+	// */
+	// let paddingLeft: number = $state(getContext(SETTINGS.COMPONENTS.AXIS.CONTEXT.PADDING_LEFT));
+	// let paddingRight: number = $state(getContext(SETTINGS.COMPONENTS.AXIS.CONTEXT.PADDING_RIGHT));
+	// let paddingTop: number = $state(getContext(SETTINGS.COMPONENTS.AXIS.CONTEXT.PADDING_TOP));
+	// let paddingBottom: number = $state(getContext(SETTINGS.COMPONENTS.AXIS.CONTEXT.PADDING_BOTTOM));
 
-	$effect(updatePaddingsContext);
 </script>
-
+<!-- <foreignObject class="flip-text-verticaly" x="50%" y="0" height="100" width="100">
+	Axis:
+	<input bind:value={axisPaddingTest.left}/>
+	<input bind:value={dimension.viewBox.width}/>
+</foreignObject>
 <g id="labels">
 	<foreignObject
 		id="x-label-wrapper"
@@ -150,7 +145,7 @@
 			y2={rightYAxisEndYPosition}
 		/>
 	{/if}
-</g>
+</g> -->
 
 <style lang="scss" type="text/scss">
 	$luna-x-axis-label-font-size: 0.2em;

@@ -3,8 +3,8 @@
 
 	import type { Dimension } from '../types/props/Dimension.js';
 	import './../core/luna.scss';
-	import { writable } from 'svelte/store';
-	import { GLOBALS } from '../core/env.luna.js';
+	import { writable, type Writable } from 'svelte/store';
+	import { SETTINGS } from '../core/env.luna.js';
 
 	type Props = {
 		children: Snippet;
@@ -23,18 +23,15 @@
 		} as Dimension
 	}: Props = $props();
 
-	setContext(GLOBALS.COMPONENTS.CONTEXT.WRAPPER.DIMENSIONS, dimension);
+	let dimensionStore = writable<Dimension>(dimension);
 
-	function setDimension(newDimension: Dimension): Dimension {
-		dimension = newDimension;
-		setContext(GLOBALS.COMPONENTS.CONTEXT.WRAPPER.DIMENSIONS, dimension);
-		//$inspect('Test: ', dimension);
+	dimensionStore.update((d: Dimension) => {
+		dimension.viewBox.height = d.viewBox.height;
+		setContext<Dimension>("test", d);
+		return d;
+	});
 
-		return dimension;
-	}
-
-	let dimensionHandler = writable(dimension);
-	dimensionHandler.update(setDimension);
+	setContext<Writable<Dimension>>(SETTINGS.COMPONENTS.WRAPPER.CONTEXT.DIMENSIONS, dimensionStore);
 </script>
 
 <svg
